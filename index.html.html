@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Minha Iasmin ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ff758f;
+            --bg: #0f0c29;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Estrelas de Fundo */
+        .stars {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            margin: 0;
+            text-shadow: 0 0 20px var(--primary);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        /* Modal / Popups */
+        .modal {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+            width: 80%; max-width: 500px;
+            background: white; color: #333;
+            padding: 40px; border-radius: 20px;
+            z-index: 1000; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+        }
+
+        .modal.active { transform: translate(-50%, -50%) scale(1); }
+
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 999; display: none;
+        }
+
+        /* Mini-jogo: Botão Fugitivo */
+        #btnNo { position: absolute; }
+
+        .heart-trail {
+            position: fixed; pointer-events: none;
+            color: var(--primary); animation: fadeUp 1s forwards;
+        }
+
+        @keyframes fadeUp {
+            to { transform: translateY(-100px); opacity: 0; }
+        }
+    </style>
+</head>
+<body onclick="createHeart(event)">
+
+    <div class="stars" id="starContainer"></div>
+
+    <header>
+        <p style="letter-spacing: 5px; text-transform: uppercase;">Bem-vinda ao meu mundo</p>
+        <h1 class="title">Iasmin</h1>
+        <p>Role para baixo para descobrir</p>
+        <div style="margin-top: 50px; font-size: 2rem;">↓</div>
+    </header>
+
+    <div class="grid-container">
+        <div class="card" onclick="openModal('modal1')">
+            <div style="font-size: 3rem;">✉️</div>
+            <h3>Uma Carta para Você</h3>
+            <p>Clique para ler o que meu coração diz agora.</p>
+        </div>
+
+        <div class="card" onclick="openModal('modal2')">
+            <div style="font-size: 3rem;">🎵</div>
+            <h3>Nossa Sintonia</h3>
+            <p>A trilha sonora que me faz lembrar de você.</p>
+        </div>
+
+        <div class="card" onclick="openModal('modal3')">
+            <div style="font-size: 3rem;">💍</div>
+            <h3>Uma Pergunta...</h3>
+            <p>Responda com sinceridade (se conseguir!).</p>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeModals()"></div>
+
+    <div id="modal1" class="modal">
+        <h2 style="color: var(--primary)">Minha Iasmin,</h2>
+        <p>Sabia que cada minuto longe de você parece uma eternidade? Você não é apenas alguém que eu gosto, você é uma pessoa maravilhosa, linda e incrível que eu não quero perder! Sou apaixonado por cada detalhe seu.❤️</p>
+        <button class="btn" onclick="closeModals()">Fechar</button>
+    </div>
+
+<div id="modal2" class="modal" style="max-width: 450px; width: 92%; padding: 20px;">
+    <h2 style="color: var(--primary); font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin-bottom: 15px;">Nossa Playlist 🎵</h2>
+    
+    <div style="box-shadow: 0 10px 30px rgba(0,0,0,0.4); border-radius: 12px;">
+        <iframe data-testid="embed-iframe" 
+        style="border-radius:12px" 
+        src="https://open.spotify.com/embed/playlist/4IJ8doyJBw3UFv9CTJYJxb?utm_source=generator" 
+        width="100%" 
+        height="352" 
+        frameBorder="0" 
+        allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy">
+        </iframe>
+    </div>
+    
+    <p style="font-size: 0.9rem; margin-top: 15px; color: #555;">Todas elas me faz pensar você! ❤️</p>
+    <button class="btn" onclick="closeModals()" style="width: 100%; margin-top: 10px;">Continuar ouvindo com você ❤️</button>
+</div>
+
+    </div>
+    
+</div>
+        
+
+    <div id="modal3" class="modal" style="min-height: 300px;">
+        <h2 style="color: var(--primary)">Aceita ser a dona do meu coração pra sempre?</h2>
+        <div style="margin-top: 50px; position: relative; height: 100px;">
+            <button class="btn" onclick="alert('Eu já sabia! Agora cuide dele com carinho! ❤️'); closeModals()">SIM!</button>
+            <button class="btn" id="btnNo" onmouseover="moveNo()">NÃO</button>
+        </div>
+    </div>
+
+    <script>
+        // Criar estrelas ao fundo
+        const starContainer = document.getElementById('starContainer');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.style.position = 'absolute';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = '2px';
+            star.style.height = '2px';
+            star.style.background = 'white';
+            star.style.opacity = Math.random();
+            starContainer.appendChild(star);
+        }
+
+        // Funções dos Modais
+        function openModal(id) {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModals() {
+            document.getElementById('overlay').style.display = 'none';
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(m => m.classList.remove('active'));
+        }
+
+        // Botão que foge
+        function moveNo() {
+            const btn = document.getElementById('btnNo');
+            const x = Math.random() * 200 - 100;
+            const y = Math.random() * 200 - 100;
+            btn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        // Corações ao clicar
+        function createHeart(e) {
+            const heart = document.createElement('div');
+            heart.className = 'heart-trail';
+            heart.innerHTML = '❤️';
+            heart.style.left = e.pageX + 'px';
+            heart.style.top = e.pageY + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 1000);
+        }
+    </script>
+</body>
+</html>
+
+<div style="text-align: center; padding: 50px 20px;">
+        <p style="opacity: 0.8; margin-bottom: 20px;">Ainda não acabou... tenho mais uma surpresa:</p>
+        <a href="https://neitannatan3.github.io/Iasmin_meu_amor/" target="_blank" style="text-decoration: none;">
+            <button class="btn" style="padding: 20px 40px; font-size: 1.2rem; background: linear-gradient(45deg, #ff4d6d, #ff758f); border: none; box-shadow: 0 0 30px rgba(255, 77, 109, 0.6); animation: pulse 2s infinite;">
+                Clique aqui para o Grande Final ✨
+            </button>
+        </a>
+    </div>
